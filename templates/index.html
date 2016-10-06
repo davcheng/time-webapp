@@ -1,7 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
   <div>
-    yo
-    {{time}}
+    <h2>
+      number of milliseconds since the start of January 1st, 1970, Coordinated Universal Time (UTC)
+    </h2>
+    <p class='time'>
+      {{time}} milliseconds!
+    </p>
   </div>
 {% endblock %}
