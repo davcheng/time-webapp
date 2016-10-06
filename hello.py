@@ -5,8 +5,6 @@ import datetime
 
 app = Flask(__name__)
 
-# epoch = datetime.datetime.utcfromtimestamp(0)
-
 @app.route('/')
 def index():
     milliseconds = get_time()
@@ -14,8 +12,6 @@ def index():
 
 def get_time():
     milli = time.time() * 1000
+    # format to un-scientific notation it
     unsci_milli = '{:.0f}'.format(milli)
     return unsci_milli
-
-# def get_time():
-#     return (time.time() - epoch).total_seconds() * 1000.0
