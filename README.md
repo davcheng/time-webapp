@@ -15,19 +15,19 @@ how to push a flask app to heroku:
 1. create requirements.txt
 include: 
 	
-```
+	```
 	Flask==0.11.1
 	Jinja2==2.7.3
 	MarkupSafe==0.23
 	Werkzeug==0.10.1
 	gunicorn==19.6
-```
+	```
 
 2. create a Procfile
 
-```
+	```
 	web: gunicorn [app name, e.g., if main.py, use "main"]:app
-```
+	```
 
 2. create heroku app
 
