@@ -1,8 +1,6 @@
 # Time-webapp
 
-Build a web app that prints out the number of milliseconds since the start of January 1st, 1970, Coordinated Universal Time (UTC). (50%)
-
-Hint: that start time is also called the “epoch” or “Unix time”.
+Homework assignment: Build a web app that prints out the number of milliseconds since the start of January 1st, 1970, Coordinated Universal Time (UTC). (50%)
 
 Build it using Flask.
 
@@ -29,20 +27,20 @@ include:
 	web: gunicorn [app name, e.g., if main.py, use "main"]:app
 	```
 
-2. create heroku app
+3. create heroku app
 
 	```
 	heroku create [app name, more importantly [WHATEVER YOU TYPE].heroku.com]
 	```
 
-3. deply code
+4. deply code
 
 	```
 	git push heroku master
 	```	
 note, this will fail if requirements.txt is not created (will say no flask)
 
-4. ensure at least one instance of app is running
+5. ensure at least one instance of app is running
 
 	```
 	heroku ps:scale web=1
@@ -55,3 +53,4 @@ if so, will show something like "Scaling dynos... done, now running web at 1:Fre
 	heroku open
 	```
 
+source: https://devcenter.heroku.com/articles/getting-started-with-python#introduction
