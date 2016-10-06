@@ -1,5 +1,7 @@
 body{
-	padding-left: 10%
+	width: 700px ;
+	margin-left: auto ;
+	margin-right: auto ;
 }
 h1{
 	font-family: 'Josefin Slab', serif;
