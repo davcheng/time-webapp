@@ -1,16 +1,14 @@
-from flask import Flask
+from flask import Flask, render_template
+import time
+import calendar
+
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Index Page'
+    millimeter = get_time()
+    return render_template('index.html', time=millimeter)
 
-@app.route('/hello')
-def hello():
-    return 'Hello, World'
-
-def calculate_time():
-    return 4
-
-if __name__ == "__main__":
-    app.run()
+def get_time():
+    seconds = calendar.timegm(time.gmtime())
+    return seconds

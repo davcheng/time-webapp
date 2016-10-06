@@ -1,22 +1,16 @@
-# all the imports
-import os
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
+from flask import Flask, render_template
+import time
+import calendar
 
-# create our little application :)
+
 app = Flask(__name__)
-app.config.from_object(__name__)
 
-# Load default config and override config from an environment variable
-app.config.update(dict(
-    DATABASE=os.path.join(app.root_path, 'flaskr.db'),
-    SECRET_KEY='development key',
-    USERNAME='admin',
-    PASSWORD='default'
-))
-app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+@app.route('/')
+def index():
+    # millimeter = get_time()
+    millimeter = 3
+    return render_template('index.html', time=millimeter)
 
-def connect_db():
-    """Connects to the specific database."""
-    rv = sqlite3.connect(app.config['DATABASE'])
-    rv.row_factory = sqlite3.Row
-    return rv
+def get_time():
+    # seconds = calendar.timegm(time.gmtime())
+    return 3
