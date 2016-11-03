@@ -7,11 +7,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    milliseconds = get_time()
-    return render_template('index.html', time=milliseconds)
+    seconds = get_time()
+    return render_template('index.html', time=seconds)
 
 def get_time():
-    milli = time.time() * 1000
+    seconds = time.time()
     # format to un-scientific notation it
-    unsci_milli = '{:.0f}'.format(milli)
-    return unsci_milli
+    unsci_sec = '{:.0f}'.format(seconds)
+    return unsci_sec
