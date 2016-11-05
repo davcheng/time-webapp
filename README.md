@@ -8,6 +8,111 @@ Deploy to Heroku.
 
 The site must be available at `<NET_ID>-time.herokuapp.com`. In other words, the third-level domain needs to be prefixed with your NetID. (50%)
 
+how to push a flask app to aws:
+http://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/
+
+1. create amazon account
+2. Connect to instance
+- install CLI
+- http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html
+- IAM group (download key )
+- get .pem
+- configure AWS CLI with IAM download (need to run aws configure and type in your IAM credentials)
+- ssh in with:
+```
+chmod 600 /path/my-key-pair.pem
+ssh -i /path/my-key-pair.pem ubuntu@ec2-198-51-100-1.compute-1.amazonaws.com
+```
+
+3. setup the instance
+	```
+	$ sudo apt-get update
+	$ sudo apt-get install apache2
+	$ sudo apt-get install libapache2-mod-wsgi
+	```
+
+4. install flask on ec2 instance
+	```
+	$ sudo apt-get install python-pip
+	$ sudo pip install flask
+	```
+
+5. create app directory and symlink
+	```
+	$ mkdir ~/flaskapp
+	$ sudo ln -sT ~/flaskapp /var/www/html/flaskapp
+	```
+6. test things are working with static page:
+	```
+	$ cd ~/flaskapp
+	$ echo "Hello World" > index.html
+	```
+
+7. Create .wsgi file locally (to be pulled into folder)
+
+	``` python
+	import sys
+	sys.path.insert(0, '/var/www/html/flaskapp')
+
+	from [hello.py file => "hello"] import app as application
+	```
+
+8. git pull app into your app folder on your ec2 instance (remove test file too)
+
+9. enable mod_wsgi
+nav into folder containing your app folder and run vim to edit
+```bash
+vim ../../etc/apache2/sites-enabled/000-default.conf
+```
+insert this after the ```DocumentRoot /var/www/html``` line:
+```
+WSGIDaemonProcess flaskapp threads=5
+WSGIScriptAlias / /var/www/html/flaskapp/flaskapp.wsgi
+
+<Directory flaskapp>
+    WSGIProcessGroup flaskapp
+    WSGIApplicationGroup %{GLOBAL}
+    Order deny,allow
+    Allow from all
+</Directory>
+```
+
+if you have issues writing the file:
+```
+:w !sudo tee % > /dev/null
+```
+source: http://stackoverflow.com/questions/8253362/etc-apt-sources-list-e212-cant-open-file-for-writing
+
+10. restart web server
+```bash
+sudo apachectl restart
+```
+
+11. check it out at your public dns
+http://ec2-xx-xxx-xx.us-[region]-2.compute.amazonaws.com/
+
+12. error logs:
+located here:
+```
+/var/log/apache2/error.log
+```
+
+## to configure domain
+https://aws.amazon.com/getting-started/tutorials/get-a-domain/
+
+1. click elastic ips in console
+2. click allocate New Address
+3. copy your new ip:
+35.162.184.28
+35.162.184.28
+4. go associate
+5. go to domain registration
+https://console.aws.amazon.com/route53/home?region=us-east-1#
+6. buy/transfer a domain
+7.
+
+
+
 
 how to push a flask app to heroku:
 1. create requirements.txt
