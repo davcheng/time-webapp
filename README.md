@@ -4,11 +4,11 @@ Homework assignment: Build a web app that prints out the number of milliseconds 
 
 Build it using Flask.
 
-Deploy to Heroku.
+Deploy to Heroku/Aws
 
 The site must be available at `<NET_ID>-time.herokuapp.com`. In other words, the third-level domain needs to be prefixed with your NetID. (50%)
 
-how to push a flask app to aws:
+## How to push a flask app to aws:
 http://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/
 
 1. create amazon account
@@ -97,7 +97,7 @@ located here:
 /var/log/apache2/error.log
 ```
 
-## to configure domain
+### to configure domain
 https://aws.amazon.com/getting-started/tutorials/get-a-domain/
 
 1. click elastic ips in console
@@ -109,12 +109,21 @@ https://aws.amazon.com/getting-started/tutorials/get-a-domain/
 5. go to domain registration
 https://console.aws.amazon.com/route53/home?region=us-east-1#
 6. buy/transfer a domain
-7.
+7.https://aws.amazon.com/getting-started/tutorials/get-a-domain/
+8. create subdomain hosting zone
+Sign in to the Route 53 console, and select Hosted Zones from the navigation pane on the left.
+Choose Create Hosted Zone.
+Enter the following information into the corresponding fields:
+For Domain Name, type your domain name; for example, “subdomain.example.com”.
+For Type, choose Public.
+Choose Create.
+9. create an A record for your subdomain, using the IP of whatever your subdomain points to
+10. copy your subdomain ns' and create a new record in your main domain (example.com) and add the ns' of your sub to the main with the subdomain.example.com as the hosted zone name
+11. check subdomain
 
 
 
-
-how to push a flask app to heroku:
+## How to push a flask app to heroku:
 1. create requirements.txt
 include: 
 	
