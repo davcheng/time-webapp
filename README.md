@@ -23,6 +23,7 @@ http://www.datasciencebytes.com/bytes/2015/02/24/running-a-flask-app-on-aws-ec2/
 chmod 600 /path/my-key-pair.pem
 ssh -i /path/my-key-pair.pem ubuntu@ec2-198-51-100-1.compute-1.amazonaws.com
 ```
+ssh -i timeapp.pem ubuntu@ec2-35-162-184-28.us-west-2.compute.amazonaws.com
 
 3. setup the instance
 	```
@@ -48,6 +49,11 @@ ssh -i /path/my-key-pair.pem ubuntu@ec2-198-51-100-1.compute-1.amazonaws.com
 	$ echo "Hello World" > index.html
 	```
 
+
+## NGINX
+7. 
+
+## APACHE
 7. Create .wsgi file locally (to be pulled into folder)
 
 	``` python
